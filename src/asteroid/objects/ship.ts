@@ -6,7 +6,7 @@
  */
 
 import { CONST } from '../const/const'
-import { Bullet } from '../objects/bullet'
+import { Bullet } from './bullet'
 
 export class Ship extends Phaser.GameObjects.Graphics {
   private currentScene: Phaser.Scene

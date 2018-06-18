@@ -7,7 +7,6 @@
 
 import { CONST } from '../const/const'
 import { Asteroid } from '../objects/asteroid'
-import { Bullet } from '../objects/bullet'
 import { Ship } from '../objects/ship'
 
 export class GameScene extends Phaser.Scene {
@@ -89,6 +88,8 @@ export class GameScene extends Phaser.Scene {
 
     // if player got hit
     if (this.gotHit) {
+      console.log('got hit')
+
       CONST.LIVES--
 
       if (CONST.LIVES > 0) {

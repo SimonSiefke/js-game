@@ -10,7 +10,14 @@
     "arrow-parens": [true, "never"],
     "no-increment-decrement": false,
     "object-shorthand-properties-first": false,
-    "no-unnecessary-type-assertion": true
+    "no-unnecessary-type-assertion": true,
+    "no-console": false,
+    "no-unused-variable": [
+      true,
+      {
+        "ignore-pattern": "^_"
+      }
+    ]
   },
   "rulesDirectory": [],
   "linterOptions": {

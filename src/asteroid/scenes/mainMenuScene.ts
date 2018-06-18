@@ -1,10 +1,3 @@
-/**
- * @author       Digitsensitive <digit.sensitivee@gmail.com>
- * @copyright    2018 Digitsensitive
- * @description  Asteroid: Main Menu Scene
- * @license      Digitsensitive
- */
-
 import { CONST } from '../const/const'
 
 export class MainMenuScene extends Phaser.Scene {
@@ -17,7 +10,7 @@ export class MainMenuScene extends Phaser.Scene {
     })
   }
 
-  public init(): void {
+  public init() {
     this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
 
     // reset score, highscore and player lives
@@ -28,7 +21,7 @@ export class MainMenuScene extends Phaser.Scene {
     CONST.LIVES = 3
   }
 
-  public preload(): void {
+  public preload() {
     this.load.bitmapFont(
       'asteroidFont',
       './assets/games/asteroid/asteroidFont.png',
@@ -36,7 +29,7 @@ export class MainMenuScene extends Phaser.Scene {
     )
   }
 
-  public create(): void {
+  public create() {
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 150,
@@ -68,7 +61,7 @@ export class MainMenuScene extends Phaser.Scene {
     )
   }
 
-  public update(): void {
+  public update() {
     if (this.startKey.isDown) {
       this.scene.start('GameScene')
     }

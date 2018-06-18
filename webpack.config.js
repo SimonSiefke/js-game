@@ -3,7 +3,7 @@ const pathToPhaser = path.join(__dirname, '/node_modules/phaser/')
 const phaser = path.join(pathToPhaser, 'dist/phaser.js')
 
 module.exports = {
-  entry: './src/games/asteroid/game.ts',
+  entry: './src/asteroid/game.ts',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',

@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "module": "CommonJs",
-    "noUnusedLocals": true
+    "module": "CommonJs"
   }
 }
