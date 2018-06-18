@@ -30,8 +30,6 @@ export class MainMenuScene extends Phaser.Scene {
   }
 
   public create() {
-    console.log('create main')
-
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 150,
@@ -44,10 +42,10 @@ export class MainMenuScene extends Phaser.Scene {
 
     this.bitmapTexts.push(
       this.add.bitmapText(
-        this.sys.canvas.width / 2 - 150,
+        this.sys.canvas.width / 2 - 370,
         this.sys.canvas.height / 2 - 60,
         'asteroidFont',
-        'A S T E R O I D',
+        'Welcome to A S T E R O I D',
         80,
       ),
     )

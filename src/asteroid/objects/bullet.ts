@@ -1,10 +1,3 @@
-/**
- * @author       Digitsensitive <digit.sensitivee@gmail.com>
- * @copyright    2018 Digitsensitive
- * @description  Asteroid: Bullet
- * @license      Digitsensitive
- */
-
 export class Bullet extends Phaser.GameObjects.Graphics {
   private colors: number[]
   private selectedColor: number
@@ -17,11 +10,8 @@ export class Bullet extends Phaser.GameObjects.Graphics {
     super(scene, params)
 
     // variables
-    this.colors = []
-    this.colors.push(0x3ae0c4)
-    this.colors.push(0x39e066)
-    this.colors.push(0xe08639)
-    const rndColor = Phaser.Math.RND.between(0, 2)
+    this.colors = [0x00ff44]
+    const rndColor = Phaser.Math.RND.between(0, this.colors.length - 1)
     this.selectedColor = this.colors[rndColor]
     this.currentScene = scene
     this.lifeSpan = 100
@@ -37,7 +27,7 @@ export class Bullet extends Phaser.GameObjects.Graphics {
 
     // define bullet graphics and draw it
     this.fillStyle(this.selectedColor, 1)
-    this.fillCircle(0, 0, 3)
+    this.fillCircle(0, 0, 5)
 
     // physics
     this.currentScene.physics.world.enable(this)
@@ -47,9 +37,11 @@ export class Bullet extends Phaser.GameObjects.Graphics {
     this.currentScene.add.existing(this)
   }
 
-  public getBody(): any {
+  public getBody() {
     return this.body
   }
+
+  // public getColor(){}
 
   public update(): void {
     // apple velocity to position

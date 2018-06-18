@@ -42,15 +42,15 @@ export class Ship extends Phaser.GameObjects.Graphics {
     this.currentScene.add.existing(this)
   }
 
-  public getBullets(): Bullet[] {
+  public getBullets() {
     return this.bullets
   }
 
-  public getBody(): any {
+  public getBody() {
     return this.body
   }
 
-  public update(): void {
+  public update() {
     if (this.active) {
       this.handleInput()
       // tslint:disable-next-line:no-empty
@@ -60,14 +60,15 @@ export class Ship extends Phaser.GameObjects.Graphics {
     this.checkIfOffScreen()
     this.updateBullets()
   }
-  private initShip(): void {
+
+  private initShip() {
     // define ship properties
     this.x = this.currentScene.sys.canvas.width / 2
     this.y = this.currentScene.sys.canvas.height / 2
     this.velocity = new Phaser.Math.Vector2(0, 0)
 
     // define ship graphics and draw it
-    this.lineStyle(1, 0xffffff)
+    this.lineStyle(1, 0x00ff44)
 
     this.strokeTriangle(
       -CONST.SHIP_SIZE,
@@ -76,6 +77,22 @@ export class Ship extends Phaser.GameObjects.Graphics {
       CONST.SHIP_SIZE,
       0,
       -CONST.SHIP_SIZE,
+    )
+    this.strokeTriangle(
+      -CONST.SHIP_SIZE * 2,
+      CONST.SHIP_SIZE * 1.5,
+      CONST.SHIP_SIZE * 2,
+      CONST.SHIP_SIZE * 1.5,
+      0,
+      -CONST.SHIP_SIZE * 2,
+    )
+    this.strokeTriangle(
+      -CONST.SHIP_SIZE * 3,
+      CONST.SHIP_SIZE * 2,
+      CONST.SHIP_SIZE * 3,
+      CONST.SHIP_SIZE * 2,
+      0,
+      -CONST.SHIP_SIZE * 3,
     )
   }
 

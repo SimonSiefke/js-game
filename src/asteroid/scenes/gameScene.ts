@@ -23,7 +23,7 @@ export class GameScene extends Phaser.Scene {
     })
   }
 
-  public create(): void {
+  public create() {
     this.player = new Ship({ scene: this, opt: {} })
     this.asteroids = []
     this.numberOfAsteroids = CONST.ASTEROID_COUNT
@@ -42,7 +42,7 @@ export class GameScene extends Phaser.Scene {
     this.gotHit = false
   }
 
-  public update(): void {
+  public update() {
     this.player.update()
 
     // check collision between asteroids and bullets
