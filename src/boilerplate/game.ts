@@ -4,6 +4,7 @@
  * @license      Digitsensitive
  */
 
+//  tslint:disable-next-line
 /// <reference path="../phaser.d.ts"/>
 
 import 'phaser'

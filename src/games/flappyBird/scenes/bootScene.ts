@@ -8,20 +8,20 @@
 export class BootScene extends Phaser.Scene {
   constructor() {
     super({
-      key: "BootScene"
-    });
+      key: 'BootScene',
+    })
   }
 
-  preload(): void {
-    this.load.image("background", "./assets/games/flappyBird/bg.png");
-    this.load.image("bird", "./assets/games/flappyBird/bird.png");
-    this.load.spritesheet("pipe", "./assets/games/flappyBird/pipe.png", {
+  public preload(): void {
+    this.load.image('background', './assets/games/flappyBird/bg.png')
+    this.load.image('bird', './assets/games/flappyBird/bird.png')
+    this.load.spritesheet('pipe', './assets/games/flappyBird/pipe.png', {
       frameWidth: 20,
-      frameHeight: 20
-    });
+      frameHeight: 20,
+    })
   }
 
-  update(): void {
-    this.scene.start("MainMenuScene");
+  public update(): void {
+    this.scene.start('MainMenuScene')
   }
 }

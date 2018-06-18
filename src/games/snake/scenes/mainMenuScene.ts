@@ -5,72 +5,72 @@
  * @license      Digitsensitive
  */
 
-import { CONST } from "../const/const";
+import { CONST } from '../const/const'
 
 export class MainMenuScene extends Phaser.Scene {
-  private startKey: Phaser.Input.Keyboard.Key;
-  private bitmapTexts: Phaser.GameObjects.BitmapText[] = [];
+  private startKey: Phaser.Input.Keyboard.Key
+  private bitmapTexts: Phaser.GameObjects.BitmapText[] = []
 
   constructor() {
     super({
-      key: "MainMenuScene"
-    });
+      key: 'MainMenuScene',
+    })
   }
 
-  init(): void {
+  public init(): void {
     this.startKey = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.S
-    );
+      Phaser.Input.Keyboard.KeyCodes.S,
+    )
 
     if (CONST.SCORE > CONST.HIGHSCORE) {
-      CONST.HIGHSCORE = CONST.SCORE;
+      CONST.HIGHSCORE = CONST.SCORE
     }
-    CONST.SCORE = 0;
+    CONST.SCORE = 0
   }
 
-  preload(): void {
+  public preload(): void {
     this.load.bitmapFont(
-      "snakeFont",
-      "./assets/games/snake/snakeFont.png",
-      "./assets/games/snake/snakeFont.fnt"
-    );
+      'snakeFont',
+      './assets/games/snake/snakeFont.png',
+      './assets/games/snake/snakeFont.fnt',
+    )
   }
 
-  create(): void {
+  public create(): void {
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 28,
         this.sys.canvas.height / 2 - 10,
-        "snakeFont",
-        "S: PLAY",
-        8
-      )
-    );
+        'snakeFont',
+        'S: PLAY',
+        8,
+      ),
+    )
 
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 70,
         this.sys.canvas.height / 2 - 60,
-        "snakeFont",
-        "S N A K E",
-        16
-      )
-    );
+        'snakeFont',
+        'S N A K E',
+        16,
+      ),
+    )
 
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 45,
         this.sys.canvas.height / 2 + 30,
-        "snakeFont",
-        "HIGHSCORE: " + CONST.HIGHSCORE,
-        8
-      )
-    );
+        'snakeFont',
+        'HIGHSCORE: ' + CONST.HIGHSCORE,
+        8,
+      ),
+    )
   }
 
-  update(): void {
+  public update(): void {
     if (this.startKey.isDown) {
-      this.scene.start("GameScene");
+      this.scene.start('GameScene')
     }
   }
 }

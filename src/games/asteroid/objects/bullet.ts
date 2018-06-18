@@ -6,62 +6,63 @@
  */
 
 export class Bullet extends Phaser.GameObjects.Graphics {
-  private colors: number[];
-  private selectedColor: number;
-  private currentScene: Phaser.Scene;
-  private velocity: Phaser.Math.Vector2;
-  private lifeSpan: number;
-  private isOffScreen: boolean;
-  public getBody(): any {
-    return this.body;
-  }
+  private colors: number[]
+  private selectedColor: number
+  private currentScene: Phaser.Scene
+  private velocity: Phaser.Math.Vector2
+  private lifeSpan: number
+  private isOffScreen: boolean
 
   constructor(scene, params) {
-    super(scene, params);
+    super(scene, params)
 
     // variables
-    this.colors = [];
-    this.colors.push(0x3ae0c4);
-    this.colors.push(0x39e066);
-    this.colors.push(0xe08639);
-    let rndColor = Phaser.Math.RND.between(0, 2);
-    this.selectedColor = this.colors[rndColor];
-    this.currentScene = scene;
-    this.lifeSpan = 100;
-    this.isOffScreen = false;
+    this.colors = []
+    this.colors.push(0x3ae0c4)
+    this.colors.push(0x39e066)
+    this.colors.push(0xe08639)
+    const rndColor = Phaser.Math.RND.between(0, 2)
+    this.selectedColor = this.colors[rndColor]
+    this.currentScene = scene
+    this.lifeSpan = 100
+    this.isOffScreen = false
 
     // init bullet
-    this.x = params.x;
-    this.y = params.y;
+    this.x = params.x
+    this.y = params.y
     this.velocity = new Phaser.Math.Vector2(
       15 * Math.cos(params.rotation - Math.PI / 2),
-      15 * Math.sin(params.rotation - Math.PI / 2)
-    );
+      15 * Math.sin(params.rotation - Math.PI / 2),
+    )
 
     // define bullet graphics and draw it
-    this.fillStyle(this.selectedColor, 1);
-    this.fillCircle(0, 0, 3);
+    this.fillStyle(this.selectedColor, 1)
+    this.fillCircle(0, 0, 3)
 
     // physics
-    this.currentScene.physics.world.enable(this);
-    this.body.allowGravity = false;
-    this.body.setCircle(3);
-    this.body.setOffset(-3, -3);
-    this.currentScene.add.existing(this);
+    this.currentScene.physics.world.enable(this)
+    this.body.allowGravity = false
+    this.body.setCircle(3)
+    this.body.setOffset(-3, -3)
+    this.currentScene.add.existing(this)
   }
 
-  update(): void {
+  public getBody(): any {
+    return this.body
+  }
+
+  public update(): void {
     // apple velocity to position
-    this.x += this.velocity.x;
-    this.y += this.velocity.y;
+    this.x += this.velocity.x
+    this.y += this.velocity.y
 
     if (this.lifeSpan < 0 || this.isOffScreen) {
-      this.setActive(false);
+      this.setActive(false)
     } else {
-      this.lifeSpan--;
+      this.lifeSpan--
     }
 
-    this.checkIfOffScreen();
+    this.checkIfOffScreen()
   }
 
   private checkIfOffScreen(): void {
@@ -69,7 +70,7 @@ export class Bullet extends Phaser.GameObjects.Graphics {
       this.x > this.currentScene.sys.canvas.width + 1 ||
       this.y > this.currentScene.sys.canvas.height + 1
     ) {
-      this.isOffScreen = true;
+      this.isOffScreen = true
     }
   }
 }

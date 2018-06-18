@@ -5,61 +5,61 @@
  * @license      Digitsensitive
  */
 
-import { Player } from "../objects/player";
-import { PlayerTwo } from "../objects/playerTwo";
-import { Wall } from "../objects/wall";
-import { CONST } from "../const/const";
+import { CONST } from '../const/const'
+import { Player } from '../objects/player'
+import { PlayerTwo } from '../objects/playerTwo'
+import { Wall } from '../objects/wall'
 
 export class GameScene extends Phaser.Scene {
   // field and game setting
-  private gameHeight: number;
-  private gameWidth: number;
-  private boardWidth: number;
-  private boardHeight: number;
-  private horizontalFields: number;
-  private verticalFields: number;
-  private tick: number;
+  private gameHeight: number
+  private gameWidth: number
+  private boardWidth: number
+  private boardHeight: number
+  private horizontalFields: number
+  private verticalFields: number
+  private tick: number
 
   // objects
-  private player: Player;
-  private playerTwo: PlayerTwo;
-  private gameBorder: Phaser.GameObjects.Image[];
+  private player: Player
+  private playerTwo: PlayerTwo
+  private gameBorder: Phaser.GameObjects.Image[]
 
   // texts
-  private scoreText: Phaser.GameObjects.BitmapText;
+  private scoreText: Phaser.GameObjects.BitmapText
 
   constructor() {
     super({
-      key: "GameScene"
-    });
+      key: 'GameScene',
+    })
   }
 
-  init(): void {
-    this.gameHeight = this.sys.canvas.height;
-    this.gameWidth = this.sys.canvas.width;
-    this.boardWidth = this.gameWidth - 2 * CONST.FIELD_SIZE;
-    this.boardHeight = this.gameHeight - 2 * CONST.FIELD_SIZE;
-    this.horizontalFields = this.boardWidth / CONST.FIELD_SIZE;
-    this.verticalFields = this.boardHeight / CONST.FIELD_SIZE;
-    this.tick = 0;
+  public init(): void {
+    this.gameHeight = this.sys.canvas.height
+    this.gameWidth = this.sys.canvas.width
+    this.boardWidth = this.gameWidth - 2 * CONST.FIELD_SIZE
+    this.boardHeight = this.gameHeight - 2 * CONST.FIELD_SIZE
+    this.horizontalFields = this.boardWidth / CONST.FIELD_SIZE
+    this.verticalFields = this.boardHeight / CONST.FIELD_SIZE
+    this.tick = 0
   }
 
-  preload(): void {
-    this.load.image("border", "./assets/games/blockade/border.png");
-    this.load.spritesheet("player", "./assets/games/blockade/player.png", {
+  public preload(): void {
+    this.load.image('border', './assets/games/blockade/border.png')
+    this.load.spritesheet('player', './assets/games/blockade/player.png', {
       frameWidth: 8,
-      frameHeight: 8
-    });
+      frameHeight: 8,
+    })
   }
 
-  create(): void {
+  public create(): void {
     // objects
-    this.player = new Player(this, 12, 12, "right");
-    this.playerTwo = new PlayerTwo(this, 244, 212, "left");
+    this.player = new Player(this, 12, 12, 'right')
+    this.playerTwo = new PlayerTwo(this, 244, 212, 'left')
 
     // TODO: Replace with Group and Action
-    this.gameBorder = [];
-    let i = 0;
+    this.gameBorder = []
+    let i = 0
     for (let x = 0; x < this.gameWidth / CONST.FIELD_SIZE; x++) {
       for (let y = 0; y < this.gameHeight / CONST.FIELD_SIZE; y++) {
         if (
@@ -72,9 +72,9 @@ export class GameScene extends Phaser.Scene {
             scene: this,
             x: CONST.FIELD_SIZE / 2 + x * CONST.FIELD_SIZE,
             y: CONST.FIELD_SIZE / 2 + y * CONST.FIELD_SIZE,
-            key: "border"
-          });
-          i++;
+            key: 'border',
+          })
+          i++
         }
       }
     }
@@ -83,76 +83,76 @@ export class GameScene extends Phaser.Scene {
     this.scoreText = this.add.bitmapText(
       this.gameWidth / 2 - 20,
       0,
-      "pcsenior",
-      CONST.P1_SCORE + " : " + CONST.P2_SCORE,
-      8
-    );
+      'pcsenior',
+      CONST.P1_SCORE + ' : ' + CONST.P2_SCORE,
+      8,
+    )
   }
 
-  update(time): void {
-    for (let wall of this.gameBorder) {
-      wall.update();
+  public update(time): void {
+    for (const wall of this.gameBorder) {
+      wall.update()
     }
     if (this.tick === 0) {
-      this.tick = time;
+      this.tick = time
     }
 
     if (!this.player.isDead() && !this.playerTwo.isDead()) {
       if (time - this.tick > 200) {
-        this.player.move();
-        this.playerTwo.move();
-        this.player.grow(this);
-        this.playerTwo.grow(this);
-        this.checkCollision();
-        this.tick = time;
+        this.player.move()
+        this.playerTwo.move()
+        this.player.grow(this)
+        this.playerTwo.grow(this)
+        this.checkCollision()
+        this.tick = time
       }
-      this.player.handleInput();
-      this.playerTwo.handleInput();
+      this.player.handleInput()
+      this.playerTwo.handleInput()
     } else {
       if (this.player.isDead()) {
-        CONST.P2_SCORE++;
+        CONST.P2_SCORE++
       } else {
-        CONST.P1_SCORE++;
+        CONST.P1_SCORE++
       }
 
-      this.scoreText.setText(CONST.P1_SCORE + " : " + CONST.P2_SCORE);
+      this.scoreText.setText(CONST.P1_SCORE + ' : ' + CONST.P2_SCORE)
       if (CONST.P1_SCORE === 6 || CONST.P2_SCORE === 6) {
-        this.scene.start("MainMenuScene");
+        this.scene.start('MainMenuScene')
       } else {
-        this.scene.restart();
+        this.scene.restart()
       }
     }
   }
 
   private checkCollision(): void {
     // border <-> snake collision
-    for (let i = 0; i < this.gameBorder.length; i++) {
+    for (const gameBorder of this.gameBorder) {
       if (
-        this.player.getHead().x === this.gameBorder[i].x &&
-        this.player.getHead().y === this.gameBorder[i].y
+        this.player.getHead().x === gameBorder.x &&
+        this.player.getHead().y === gameBorder.y
       ) {
-        this.player.setDead(true);
+        this.player.setDead(true)
       }
 
       if (
-        this.playerTwo.getHead().x === this.gameBorder[i].x &&
-        this.playerTwo.getHead().y === this.gameBorder[i].y
+        this.playerTwo.getHead().x === gameBorder.x &&
+        this.playerTwo.getHead().y === gameBorder.y
       ) {
-        this.playerTwo.setDead(true);
+        this.playerTwo.setDead(true)
       }
     }
 
     // check snake <-> snake collision
-    let playerOneBody = this.player.getBody();
-    let bodiesMerged = playerOneBody.concat(this.playerTwo.getBody());
+    const playerOneBody = this.player.getBody()
+    const bodiesMerged = playerOneBody.concat(this.playerTwo.getBody())
 
-    for (let i = 0; i < bodiesMerged.length; i++) {
+    for (const mergedBody of bodiesMerged) {
       if (
         this.player.getBody().length > 1 &&
-        this.player.getHead().x === bodiesMerged[i].x &&
-        this.player.getHead().y === bodiesMerged[i].y
+        this.player.getHead().x === mergedBody.x &&
+        this.player.getHead().y === mergedBody.y
       ) {
-        this.player.setDead(true);
+        this.player.setDead(true)
       }
 
       if (
@@ -160,7 +160,7 @@ export class GameScene extends Phaser.Scene {
         this.playerTwo.getHead().x === bodiesMerged[i].x &&
         this.playerTwo.getHead().y === bodiesMerged[i].y
       ) {
-        this.playerTwo.setDead(true);
+        this.playerTwo.setDead(true)
       }
     }
   }
@@ -168,12 +168,12 @@ export class GameScene extends Phaser.Scene {
   private rndXPos(): number {
     return (
       Phaser.Math.RND.between(1, this.horizontalFields - 1) * CONST.FIELD_SIZE
-    );
+    )
   }
 
   private rndYPos(): number {
     return (
       Phaser.Math.RND.between(1, this.verticalFields - 1) * CONST.FIELD_SIZE
-    );
+    )
   }
 }

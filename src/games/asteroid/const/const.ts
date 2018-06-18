@@ -16,19 +16,19 @@ export let CONST = {
       MAXSIZE: 100,
       MINSIZE: 50,
       MAXSPEED: 3,
-      MINSPEED: 1
+      MINSPEED: 1,
     },
     MEDIUM: {
       MAXSIZE: 50,
       MINSIZE: 30,
       MAXSPEED: 4,
-      MINSPEED: 1
+      MINSPEED: 1,
     },
     SMALL: {
       MAXSIZE: 30,
       MINSIZE: 10,
       MAXSPEED: 4,
-      MINSPEED: 2
-    }
-  }
-};
+      MINSPEED: 2,
+    },
+  },
+}

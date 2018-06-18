@@ -6,7 +6,11 @@
     "object-literal-sort-keys": false,
     "quotemark": [true, "single"],
     "semicolon": [true, "never"],
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "arrow-parens": [true, "never"]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["src/**/*.d.ts"]
+  }
 }
