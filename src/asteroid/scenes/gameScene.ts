@@ -46,29 +46,24 @@ export class GameScene extends Phaser.Scene {
     this.player.update()
 
     // check collision between asteroids and bullets
-    for (let i = 0; i < this.asteroids.length; i++) {
+    for (const [i, asteroid] of this.asteroids.entries()) {
       for (const bullet of this.player.getBullets()) {
         if (
           Phaser.Geom.Intersects.RectangleToRectangle(
             bullet.getBody(),
-            this.asteroids[i].getBody(),
+            asteroid.getBody(),
           )
         ) {
           bullet.setActive(false)
-          this.asteroids[i].setActive(false)
-          this.updateScore(this.asteroids[i].getSize())
+          asteroid.setActive(false)
+          this.updateScore(asteroid.getSize())
         }
       }
-      this.asteroids[i].update()
+      asteroid.update()
 
-      if (!this.asteroids[i].active) {
-        this.spawnAsteroids(
-          3,
-          this.asteroids[i].getSize() - 1,
-          this.asteroids[i].x,
-          this.asteroids[i].y,
-        )
-        this.asteroids[i].destroy()
+      if (!asteroid.active) {
+        this.spawnAsteroids(3, asteroid.getSize() - 1, asteroid.x, asteroid.y)
+        asteroid.destroy()
         this.asteroids.splice(i, 1)
       }
     }
@@ -88,10 +83,7 @@ export class GameScene extends Phaser.Scene {
 
     // if player got hit
     if (this.gotHit) {
-      console.log('got hit')
-
       CONST.LIVES--
-
       if (CONST.LIVES > 0) {
         this.scene.start('GameScene')
       } else {

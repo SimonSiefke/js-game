@@ -5,7 +5,7 @@ export class BootScene extends Phaser.Scene {
     })
   }
 
-  public update(): void {
+  public update() {
     this.scene.start('MainMenuScene')
   }
 }

@@ -30,6 +30,8 @@ export class MainMenuScene extends Phaser.Scene {
   }
 
   public create() {
+    console.log('create main')
+
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 150,
@@ -64,6 +66,7 @@ export class MainMenuScene extends Phaser.Scene {
   public update() {
     if (this.startKey.isDown) {
       this.scene.start('GameScene')
+      this.startKey.isDown = false
     }
   }
 }

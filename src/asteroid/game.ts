@@ -8,7 +8,6 @@ import { MainMenuScene } from './scenes/mainMenuScene'
 
 const config: GameConfig = {
   title: 'Asteroid',
-  url: 'https://github.com/digitsensitive/phaser3-typescript',
   version: '1.0',
   width: 800,
   height: 600,
@@ -27,7 +26,7 @@ const config: GameConfig = {
       debug: false,
     },
   },
-  backgroundColor: '#000000',
+  backgroundColor: 'green',
   pixelArt: false,
   antialias: true,
 }
