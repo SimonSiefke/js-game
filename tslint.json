@@ -10,7 +10,7 @@
     "arrow-parens": [true, "never"],
     "no-increment-decrement": false,
     "object-shorthand-properties-first": false,
-    "no-boolean-literal-compare": false
+    "no-unnecessary-type-assertion": true
   },
   "rulesDirectory": [],
   "linterOptions": {

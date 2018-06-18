@@ -27,7 +27,7 @@
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "serve:prod": "webpack-dev-server --mode production",
-    "lint": "tslint --fix './src/**/*.ts'"
+    "lint": "tslint --fix --project tsconfig.json './src/**/*.ts'"
   },
   "license": "MIT"
 }

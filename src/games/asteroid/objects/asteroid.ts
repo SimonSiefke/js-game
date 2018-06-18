@@ -29,22 +29,22 @@ export class Asteroid extends Phaser.GameObjects.Graphics {
     this.currentScene.add.existing(this)
   }
 
-  public getRadius(): number {
+  public getRadius() {
     return this.radius
   }
-  public getBody(): any {
+  public getBody() {
     return this.body
   }
 
-  public update(): void {
+  public update() {
     this.applyForces()
     this.checkIfOffScreen()
   }
-  public getSize(): number {
+  public getSize() {
     return this.sizeOfAsteroid
   }
 
-  private initAsteroid(aX: number, aY: number, aSizeOfAsteroid: number): void {
+  private initAsteroid(aX: number, aY: number, aSizeOfAsteroid: number) {
     const points: Phaser.Math.Vector2[] = []
 
     for (let i = 0; i < this.numberOfSides; i++) {
@@ -110,7 +110,7 @@ export class Asteroid extends Phaser.GameObjects.Graphics {
     this.y = aY
   }
 
-  private applyForces(): void {
+  private applyForces() {
     // apple velocity to position
     this.x += this.velocity.x
     this.y += this.velocity.y
@@ -119,7 +119,7 @@ export class Asteroid extends Phaser.GameObjects.Graphics {
     this.rotation += 0.005
   }
 
-  private checkIfOffScreen(): void {
+  private checkIfOffScreen() {
     // horizontal check
     if (this.x > this.currentScene.sys.canvas.width + CONST.SHIP_SIZE) {
       this.x = -CONST.SHIP_SIZE
@@ -135,7 +135,7 @@ export class Asteroid extends Phaser.GameObjects.Graphics {
     }
   }
 
-  private getRandomVelocity(aMin: number, aMax: number): Phaser.Math.Vector2 {
+  private getRandomVelocity(aMin: number, aMax: number) {
     return new Phaser.Math.Vector2(
       Phaser.Math.RND.between(
         this.getRndNumber(aMin, aMax),
@@ -148,7 +148,7 @@ export class Asteroid extends Phaser.GameObjects.Graphics {
     )
   }
 
-  private getRndNumber(aMin: number, aMax: number): number {
+  private getRndNumber(aMin: number, aMax: number) {
     let num = Math.floor(Math.random() * aMax) + aMin
     num *= Math.floor(Math.random() * 2) === 1 ? 1 : -1
     return num
