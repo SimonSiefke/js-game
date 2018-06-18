@@ -18,9 +18,7 @@ export class MainMenuScene extends Phaser.Scene {
   }
 
   public init(): void {
-    this.startKey = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.S,
-    )
+    this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
 
     // reset score, highscore and player lives
     if (CONST.SCORE > CONST.HIGHSCORE) {

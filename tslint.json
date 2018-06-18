@@ -11,6 +11,6 @@
   },
   "rulesDirectory": [],
   "linterOptions": {
-    "exclude": ["src/**/*.d.ts"]
+    "exclude": ["src/**/*.d.ts", "webpack.config.js"]
   }
 }
