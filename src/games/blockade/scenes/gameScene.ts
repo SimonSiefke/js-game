@@ -157,8 +157,8 @@ export class GameScene extends Phaser.Scene {
 
       if (
         this.playerTwo.getBody().length > 1 &&
-        this.playerTwo.getHead().x === bodiesMerged[i].x &&
-        this.playerTwo.getHead().y === bodiesMerged[i].y
+        this.playerTwo.getHead().x === mergedBody.x &&
+        this.playerTwo.getHead().y === mergedBody.y
       ) {
         this.playerTwo.setDead(true)
       }
