@@ -1,13 +1,15 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:recommended"],
+  "extends": ["tslint:recommended", "tslint-config-airbnb"],
   "jsRules": {},
   "rules": {
     "object-literal-sort-keys": false,
     "quotemark": [true, "single"],
     "semicolon": [true, "never"],
     "no-shadowed-variable": false,
-    "arrow-parens": [true, "never"]
+    "arrow-parens": [true, "never"],
+    "no-increment-decrement": false,
+    "object-shorthand-properties-first": false
   },
   "rulesDirectory": [],
   "linterOptions": {
