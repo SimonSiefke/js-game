@@ -24,7 +24,7 @@ const config: GameConfig = {
     default: 'arcade',
     arcade: {
       debug: false,
-      gravity: { y: 300 },
+      gravity: { y: 600 },
     },
   },
   pixelArt: false,

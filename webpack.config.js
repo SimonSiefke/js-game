@@ -3,11 +3,12 @@ const pathToPhaser = path.join(__dirname, '/node_modules/phaser/')
 const phaser = path.join(pathToPhaser, 'dist/phaser.js')
 
 module.exports = {
-  entry: './src/jumpnrun/game.ts',
+  entry: './src/new/game.ts',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
+  devtool: 'cheap-eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, './'),
     publicPath: '/build/',
