@@ -26,4 +26,5 @@ const config: GameConfig = {
   scene: [BootScene],
 }
 
+// @ts-ignore
 const game = new Phaser.Game(config)
